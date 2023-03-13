@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   const queryObject = url.parse(req.url, true).query;
-  res.send(queryObject);
 
   let playerTag;
   let playerId;
