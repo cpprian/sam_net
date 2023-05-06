@@ -8,17 +8,17 @@
     </head>
     <body>
         <% if (videoSrc) { %>
-            <video id=videoId controls autoplay>
+            <video id="<%= videoId %>" controls>
                 <source src="/video/<%= videoSrc %>" type="<% videoTypeFile %>" />
             </video>
         <% } if (audioSrc) { %>
-            <audio id=audioId controls autoplay>
-                <source src="/audio/<%= audioSrc %>" type="<% audioTypeFile %>"" />
+            <audio id="<%= audioId %>" controls>
+                <source src="/audio/<%= audioSrc %>" type="<% audioTypeFile %>" />
             </audio>
         <% } if (!audioSrc && !videoSrc) { %>
             <h1>Hello World Player</h1>
         <% } if (imgSrc) { %>
-            <img src="/img/<%= imgSrc %>" alt="Hello World Image" />
+            <img src="/img/<%= imgSrc %>" alt="Hello World Image" id="<%= posterId %>" />
         <% } %>
     </body>
 </html>

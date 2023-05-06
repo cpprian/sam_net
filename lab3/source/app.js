@@ -15,11 +15,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // TODO: find better way to 
 
 app.get("/", function (req, res) {
     const queryObject = url.parse(req.url, true).query;
-    console.log(queryObject);
     
     // TODO: refactor this
     let videoId;
     let audioId;
+    let posterId;
     let audioSrc;
     let videoSrc;
     let imgSrc;
@@ -39,10 +39,11 @@ app.get("/", function (req, res) {
     }
   
     if (queryObject.imgFile) {
+        posterId = 'posterImage';
       imgSrc = queryObject.imgFile;
     }
 
-    res.render(__dirname + "/index.ejs", { videoId, audioId, audioSrc, videoSrc, imgSrc, audioTypeFile, videoTypeFile});
+    res.render(__dirname + "/index.ejs", { videoId, audioId, posterId, audioSrc, videoSrc, imgSrc, audioTypeFile, videoTypeFile});
 });
 
 app.get("/video/:videoSrc", function (req, res) {
