@@ -18,8 +18,6 @@ app.get("/", function (req, res) {
     console.log(queryObject);
     
     // TODO: refactor this
-    let videoPlayerTag;
-    let audioPlayerTag;
     let videoId;
     let audioId;
     let audioSrc;
@@ -29,14 +27,12 @@ app.get("/", function (req, res) {
     let videoTypeFile;
   
     if (queryObject.videoFile) {
-      videoPlayerTag = 'video';
       videoId = 'videoPlayer';
       videoTypeFile = 'video/mp4';
       videoSrc = queryObject.videoFile;
     }
   
     if (queryObject.audioFile) {
-      audioPlayerTag = 'audio';
       audioId = 'audioPlayer';
       audioTypeFile = 'audio/mp3';
       audioSrc = queryObject.audioFile;
@@ -46,9 +42,7 @@ app.get("/", function (req, res) {
       imgSrc = queryObject.imgFile;
     }
 
-    console.log('\nvideoPlayerTag', videoPlayerTag, '\naudioPlayerTag', audioPlayerTag, '\nvideoId', videoId, '\naudioId', audioId, '\naudioSrc', audioSrc, '\nvideoSrc', videoSrc, '\nimgSrc', imgSrc, '\naudioTypeFile', audioTypeFile, '\nvideoTypeFile', videoTypeFile);
-
-    res.render(__dirname + "/index.ejs", { videoPlayerTag, audioPlayerTag, videoId, audioId, audioSrc, videoSrc, imgSrc, audioTypeFile, videoTypeFile});
+    res.render(__dirname + "/index.ejs", { videoId, audioId, audioSrc, videoSrc, imgSrc, audioTypeFile, videoTypeFile});
 });
 
 app.get("/video/:videoSrc", function (req, res) {

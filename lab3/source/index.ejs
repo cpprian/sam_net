@@ -8,12 +8,12 @@
     </head>
     <body>
         <% if (videoSrc) { %>
-            <video id="videoPlayer" controls autoplay>
-                <source src="/video/<%= videoSrc %>" type="video/mp4" />
+            <video id=videoId controls autoplay>
+                <source src="/video/<%= videoSrc %>" type="<% videoTypeFile %>" />
             </video>
         <% } if (audioSrc) { %>
-            <audio id="audioPlayer" controls autoplay>
-                <source src="/audio/<%= audioSrc %>" type="audio/mp3" />
+            <audio id=audioId controls autoplay>
+                <source src="/audio/<%= audioSrc %>" type="<% audioTypeFile %>"" />
             </audio>
         <% } if (!audioSrc && !videoSrc) { %>
             <h1>Hello World Player</h1>
