@@ -34,22 +34,23 @@ table td {
     padding: 1rem;
     text-align: left;
     font-size: 1.25rem;
+    background-color: aliceblue;
 }
 
 table th {
     background-color: #f0f0f0;
 }
   
-.audio_content,
-.video_content {
+.media_content {
     position: relative;
     margin: 0 auto;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     max-width: 48rem;
+    background-color: antiquewhite;
+    padding: 2rem;
 }
 
-.audio_content,
-.video_content h1 {
+.media_content h1 {
     text-align: center;
 }
   
@@ -101,4 +102,11 @@ button:hover {
     margin: 0 auto;
     padding: 2rem;
 }
+
+.button_container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
   
