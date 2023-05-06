@@ -33,6 +33,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/video/:videoSrc", function (req, res) {
+    console.log("hello");
     generateStreamPipe(res, videoType, sourcePath + req.params.videoSrc);
 });
 
