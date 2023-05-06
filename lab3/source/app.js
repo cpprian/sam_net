@@ -18,33 +18,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get("/", function (req, res) {
     const queryObject = qs.parse(url.parse(req.url).query);
 
-    let params = {
-        videoId: null,
-        audioId: null,
-        posterId: null,
-        audioSrc: null,
-        videoSrc: null,
-        imgSrc: null,
-        audioTypeFile: null,
-        videoTypeFile: null,
+    const params = {
+        videoId: queryObject.videoFile ? 'videoPlayer' : null,
+        audioId: queryObject.audioFile ? 'audioPlayer' : null,
+        posterId: queryObject.imgFile ? 'posterImage' : null,
+        audioSrc: queryObject.audioFile || null,
+        videoSrc: queryObject.videoFile || null,
+        imgSrc: queryObject.imgFile || null,
+        audioTypeFile: queryObject.audioFile ? videoType : null,
+        videoTypeFile: queryObject.videoFile ? audioType : null,
     };
-
-    if (queryObject.videoFile) {
-        params.videoId = 'videoPlayer';
-        params.videoTypeFile = 'video/mp4';
-        params.videoSrc = queryObject.videoFile;
-    }
-
-    if (queryObject.audioFile) {
-        params.audioId = 'audioPlayer';
-        params.audioTypeFile = 'audio/mp3';
-        params.audioSrc = queryObject.audioFile;
-    }
-
-    if (queryObject.imgFile) {
-        params.posterId = 'posterImage';
-        params.imgSrc = queryObject.imgFile;
-    }
 
     res.render(path.join(__dirname, "index.ejs"), params);
 });
@@ -63,19 +46,17 @@ app.get("/img/:imgSrc", function (req, res) {
 });
 
 function generateStreamPipe(response, mediaType, mediaPath) {
-    const mediaSize = fs.statSync(mediaPath).size;
+    const mediaSize = fs.statSync(mediaPath).size - 1;
 
-    const start = 0;
-    const contentLength = mediaSize - 1;
     const headers = {
-        "Content-Range": `bytes ${contentLength}`,
+        "Content-Range": `bytes ${mediaSize}`,
         "Accept-Ranges": "bytes",
-        "Content-Length": contentLength,
+        "Content-Length": mediaSize,
         "Content-Type": mediaType,
     };
 
     response.writeHead(206, headers);
-    const audioStream = fs.createReadStream(mediaPath, { start, contentLength });
+    const audioStream = fs.createReadStream(mediaPath, { mediaSize });
     audioStream.pipe(response);
 }
 
