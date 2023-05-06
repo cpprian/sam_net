@@ -18,35 +18,36 @@ app.use(bodyParser.urlencoded({ extended: true })); // TODO: find better way to 
 
 app.get("/", function (req, res) {
     const queryObject = url.parse(req.url, true).query;
-    
-    // TODO: refactor this
-    let videoId;
-    let audioId;
-    let posterId;
-    let audioSrc;
-    let videoSrc;
-    let imgSrc;
-    let audioTypeFile;
-    let videoTypeFile;
-  
+
+    let params = {
+        videoId: null,
+        audioId: null,
+        posterId: null,
+        audioSrc: null,
+        videoSrc: null,
+        imgSrc: null,
+        audioTypeFile: null,
+        videoTypeFile: null,
+    };
+
     if (queryObject.videoFile) {
-      videoId = 'videoPlayer';
-      videoTypeFile = 'video/mp4';
-      videoSrc = queryObject.videoFile;
-    }
-  
-    if (queryObject.audioFile) {
-      audioId = 'audioPlayer';
-      audioTypeFile = 'audio/mp3';
-      audioSrc = queryObject.audioFile;
-    }
-  
-    if (queryObject.imgFile) {
-        posterId = 'posterImage';
-      imgSrc = queryObject.imgFile;
+        params.videoId = 'videoPlayer';
+        params.videoTypeFile = 'video/mp4';
+        params.videoSrc = queryObject.videoFile;
     }
 
-    res.render(__dirname + "/index.ejs", { videoId, audioId, posterId, audioSrc, videoSrc, imgSrc, audioTypeFile, videoTypeFile});
+    if (queryObject.audioFile) {
+        params.audioId = 'audioPlayer';
+        params.audioTypeFile = 'audio/mp3';
+        params.audioSrc = queryObject.audioFile;
+    }
+
+    if (queryObject.imgFile) {
+        params.posterId = 'posterImage';
+        params.imgSrc = queryObject.imgFile;
+    }
+
+    res.render(path.join(__dirname, "index.ejs"), params);
 });
 
 app.get("/video/:videoSrc", function (req, res) {
