@@ -3,7 +3,7 @@ const ejs = require('ejs');
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
-const bodyParser = require('body-parser'); // TODO: find better way to parse query params
+const qs = require('qs');
 
 const port = 4080;
 const sourcePath = "./source/static/"; // FIXME: check is it still work on docker
@@ -14,10 +14,9 @@ const app = express();
 app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: true })); // TODO: find better way to parse query params
 
 app.get("/", function (req, res) {
-    const queryObject = url.parse(req.url, true).query;
+    const queryObject = qs.parse(url.parse(req.url).query);
 
     let params = {
         videoId: null,
@@ -59,9 +58,8 @@ app.get("/audio/:audioSrc", function (req, res) {
 });
 
 app.get("/img/:imgSrc", function (req, res) {
-    const imagePath = "static/" + req.params.imgSrc;
-    const absolutePath = path.resolve(__dirname, imagePath);
-    res.sendFile(absolutePath );
+    const absolutePath = path.resolve(__dirname, "static/" + req.params.imgSrc);
+    res.sendFile(absolutePath);
 });
 
 function generateStreamPipe(response, mediaType, mediaPath) {
