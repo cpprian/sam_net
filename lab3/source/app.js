@@ -13,7 +13,7 @@ const audioType = "audio/mp3";
 const app = express();
 app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.get("/", function (req, res) {
     const queryObject = qs.parse(url.parse(req.url).query);
@@ -42,6 +42,11 @@ app.get("/audio/:audioSrc", function (req, res) {
 
 app.get("/img/:imgSrc", function (req, res) {
     const absolutePath = path.resolve(__dirname, "static/" + req.params.imgSrc);
+    res.sendFile(absolutePath);
+});
+
+app.get("/css/:style", function (req, res) {
+    const absolutePath = path.resolve(__dirname, "css/" + req.params.style);
     res.sendFile(absolutePath);
 });
 
