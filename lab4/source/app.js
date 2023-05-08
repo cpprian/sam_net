@@ -6,7 +6,7 @@ const url = require('url');
 const qs = require('qs');
 
 const port = 4080;
-const sourcePath = "./source/static/"; // FIXME: check is it still work on docker
+const sourcePath = "static/";
 const videoType = "video/mp4";
 const audioType = "audio/mp3";
 
