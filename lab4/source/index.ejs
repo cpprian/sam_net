@@ -76,6 +76,14 @@
                     <td>${++rowNumber}</td>
                     <td>${url}</td>
                     <td>${type}</td>
+                    <td>
+                        <button 
+                            onclick="this.parentElement.parentElement.remove();"
+                            class="removeRowButton"
+                        >
+                            Delete
+                        </button>
+                    </td>
                 `;
                 playlistTableBody.appendChild(newRow);
             }
