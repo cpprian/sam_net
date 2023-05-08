@@ -109,4 +109,17 @@ button:hover {
     margin-top: 10px;
 }
 
-  
+.removeRowButton {
+    background-color: #44ff44;
+    color: #444;
+    border: 0.01rem solid #444;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.removeRowButton:hover {
+    background-color: #00ffee;
+    color: #000;
+}
