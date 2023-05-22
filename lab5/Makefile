@@ -1,5 +1,5 @@
-docker_name:=lab4_test_js
-container_name:=lab4_test_container_js
+docker_name:=lab5_test_js
+container_name:=lab5_test_container_js
 port:=4080
 docker_build:
 	echo "Prepare docker here..."
