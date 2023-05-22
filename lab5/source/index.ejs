@@ -83,9 +83,43 @@
                         >
                             Delete
                         </button>
+                        <button
+                            onclick="moveRowUp(this)"
+                            class="moveRowUpButton"
+                        >
+                            Up
+                        </button>
+                        <button
+                            onclick="moveRowDown(this)"
+                            class="moveRowDownButton"
+                        >
+                            Down
+                        </button>
                     </td>
                 `;
                 playlistTableBody.appendChild(newRow);
+            }
+
+            function moveRowUp(row) {
+                const currentRow = row.parentElement.parentElement;
+                const previousRow = currentRow.previousElementSibling;
+
+                if (previousRow) {
+                    playlistTableBody.insertBefore(currentRow, previousRow);
+                } else {
+                    playlistTableBody.appendChild(currentRow);
+                }
+            }
+
+            function moveRowDown(row) {
+                const currentRow = row.parentElement.parentElement;
+                const nextRow = currentRow.nextElementSibling;
+
+                if (nextRow) {
+                    playlistTableBody.insertBefore(nextRow, currentRow);
+                } else {
+                    playlistTableBody.insertBefore(currentRow, playlistTableBody.firstElementChild.nextSibling);
+                }
             }
         </script>
     </body>
