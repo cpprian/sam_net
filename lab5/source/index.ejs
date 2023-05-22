@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hello World Player</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <% if (videoSrc) { %>
+            <section class="media_content">
+                <h1>Hello World Video</h1>
+                <video id="<%= videoId %>" controls>
+                    <source src="" type="<% videoTypeFile %>" />
+                </video>
+                <div class="button_container">
+                    <button id="videoCancel" onclick="document.getElementById('<%= videoId %>').src = '/video/cancel.mp4';">
+                        Cancel Video
+                    </button>
+                    <button id="videoAdd" onclick="addRow(document.getElementById('<%= videoId %>').src, 'Video');">
+                        Add Video
+                    </button>
+                </div>
+            </section>
+        <% } if (audioSrc) { %>
+            <section class="media_content">
+                <h1>Hello World Audio</h1>
+                <audio id="<%= audioId %>" controls>
+                    <source src="" type="<% audioTypeFile %>" />
+                </audio>
+                <div class="button_container">
+                    <button id="audioCancel" onclick="document.getElementById('<%= audioId %>').src = '/audio/cancel.mp3';">
+                        Cancel Audio
+                    </button>
+                    <button id="audioAdd" onclick="addRow(document.getElementById('<%= audioId %>').src, 'Audio');">
+                        Add Audio
+                    </button>
+                </div>
+            </section>
+        <% } if (!audioSrc && !videoSrc) { %>
+            <h1>Hello World Player</h1>
+        <% } if (imgSrc) { %>
+            <section class="media_content">
+                <h1>Hello World Image</h1>
+                <img src="/img/<%= imgSrc %>" alt="Hello World Image" id="<%= posterId %>" />
+                <div class="button_container">
+                    <button id="imgAdd" onclick="addRow(document.getElementById('<%= posterId %>').src, 'Image');">
+                        Add Image
+                    </button>
+                </div>
+            </section>
+        <% } %>
+
+        <table id="playlist_table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>URL</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <script>
+            document.getElementById('<%= audioId %>').src = '/audio/<%= audioSrc %>';
+            document.getElementById('<%= videoId %>').src = '/video/<%= videoSrc %>';
+            const playlistTableBody = document.querySelector("#playlist_table tbody");
+            let rowNumber = 0;
+    
+            function addRow(url, type) {  
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td>${++rowNumber}</td>
+                    <td>${url}</td>
+                    <td>${type}</td>
+                    <td>
+                        <button 
+                            onclick="this.parentElement.parentElement.remove();"
+                            class="removeRowButton"
+                        >
+                            Delete
+                        </button>
+                    </td>
+                `;
+                playlistTableBody.appendChild(newRow);
+            }
+        </script>
+    </body>
+</html>
