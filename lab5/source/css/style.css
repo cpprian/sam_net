@@ -123,3 +123,11 @@ button:hover {
     background-color: #00ffee;
     color: #000;
 }
+
+.moveRowUpButton {
+    background-color: violet;
+}
+
+.moveDownButton {
+    background-color: goldenrod;
+}
