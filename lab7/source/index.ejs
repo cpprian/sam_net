@@ -15,6 +15,12 @@
                     <source src="" type="<% videoTypeFile %>" />
                 </video>
                 <div class="button_container">
+                    <button id="videoPlay" onclick="document.getElementById('<%= videoId %>').play();">
+                        Play Video
+                    </button>
+                    <button id="videoPause" onclick="document.getElementById('<%= videoId %>').pause();">
+                        Pause Video
+                    </button>
                     <button id="videoCancel" onclick="document.getElementById('<%= videoId %>').src = '/video/cancel.mp4';">
                         Cancel Video
                     </button>
