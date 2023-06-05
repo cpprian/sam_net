@@ -1,0 +1,133 @@
+body {
+    background-color: #8294C4;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+  
+h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+  
+p {
+    font-size: 1.25rem;
+}
+
+video,
+audio {
+    display: block;
+    margin-bottom: 2rem;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+table th,
+table td {
+    border: 0.1px solid #ddd;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.25rem;
+    background-color: aliceblue;
+}
+
+table th {
+    background-color: #f0f0f0;
+}
+  
+.media_content {
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    max-width: 48rem;
+    background-color: antiquewhite;
+    padding: 2rem;
+}
+
+.media_content h1 {
+    text-align: center;
+}
+  
+button {
+    display: block;
+    margin: 0 auto;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+  
+button:hover {
+    background-color: #e60000;
+}
+  
+#playlist_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+  
+#playlist_table th,
+#playlist_table td {
+    padding: 0.5rem;
+    border: 0.1rem solid #ccc;
+    text-align: left;
+}
+  
+#playlist_table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#audioId,
+#videoId {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 80rem;
+}
+
+#posterId {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.button_container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.removeRowButton {
+    background-color: #44ff44;
+    color: #444;
+    border: 0.01rem solid #444;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.removeRowButton:hover {
+    background-color: #00ffee;
+    color: #000;
+}
+
+.moveRowUpButton {
+    background-color: violet;
+}
+
+.moveRowDownButton {
+    background-color: goldenrod;
+}
